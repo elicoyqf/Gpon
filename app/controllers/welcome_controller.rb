@@ -43,13 +43,17 @@ class WelcomeController < ApplicationController
     pass_set = Set[]
     ont_str  = []
 
-    (1..count).each { pass_set << newpass(2, pass_prefix) }
+    #(1..count).each { pass_set << newpass(2, pass_prefix) }
 
-    if pass_set.size == count
-      pass_set.each { |s| puts s }
+    (1..count).each do |tmp|
+      pass_set << newpass(2, pass_prefix)
+      until pass_set.size == tmp
+        pass_set << newpass(2, pass_prefix)
+      end
     end
 
     if pass_set.size == count
+      pass_set.each { |s| puts s }
       pass_set.each_with_index do |set, index|
         t = index + ont_no
         if t < 100
