@@ -42,12 +42,12 @@ class WelcomeController < ApplicationController
   def ont_make(port, pass_prefix, lineid, srvid, ont_no, count)
     pass_set = Set[]
     ont_str  = []
-    while pass_set.size != count do
-      (1..count).each { pass_set << newpass(2, pass_prefix) }
+
+    (1..count).each { pass_set << newpass(2, pass_prefix) }
+
+    if pass_set.size == count
+      pass_set.each { |s| puts s }
     end
-    #if pass_set.size == count
-    #  pass_set.each { |s| puts s }
-    #end
 
     if pass_set.size == count
       pass_set.each_with_index do |set, index|
