@@ -1,0 +1,133 @@
+<div id="content">
+  <!--<form class="form-horizontal well" action="/gpon/g_command" method="post">-->
+  <%= form_tag 'g_command', { class: 'form-horizontal well' } do -%>
+      <fieldset>
+        <legend><b>惠州分公司专用</b>-中兴OLT模板-输入以下必要信息</legend>
+      </fieldset>
+      <div class="row-fluid"></div>
+      <div class="row">
+        <div class="span12">
+          <div class="span6">
+            <div class="control-group">
+              <label class="control-label" for="s_no"> 密码前缀[8位]</label>
+
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"> K </span>
+                  <%= text_field :preconfig, 'olt_id', { :class => 'span10', :size => '16', :id => 's_no' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="span6">
+            <div class="control-group">
+              <label class="control-label" for="s_no"> 框槽端口[3位]</label>
+
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"> P </span>
+                  <%= text_field :preconfig, 'port', { :class => 'span10', :size => '16', :id => 's_no' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!--  <div class="row">
+        <div class="span12">
+          <div class="span6">
+            <div class="control-group">
+              <label class="control-label" for="s_no"> 线路模板编号</label>
+
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"> L </span>
+                  <%= text_field :preconfig, 'line_id', { :class => 'span10', :size => '16', :id => 's_no' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="span6">
+            <div class="control-group">
+              <label class="control-label" for="s_no"> 业务模板编号</label>
+
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"> S </span>
+                  <%= text_field :preconfig, 'srv_id', { :class => 'span10', :size => '16', :id => 's_no' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+
+      <div class="row">
+        <div class="span12">
+          <div class="span6">
+            <div class="control-group">
+              <label class="control-label" for="s_no"> 外层VLAN</label>
+
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"> V </span>
+                  <%= text_field :preconfig, 'pe_vlan', { :class => 'span10', :size => '16', :id => 's_no' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="span6">
+            <div class="control-group">
+              <label class="control-label" for="s_no"> 内层VLAN起始</label>
+
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"> v </span>
+                  <%= text_field :preconfig, 'ce_vlan', { :class => 'span10', :size => '16', :id => 's_no' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span12">
+          <div class="span6">
+            <div class="control-group">
+              <label class="control-label" for="s_no"> ONT起始序号</label>
+
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"> B </span>
+                  <%= text_field :preconfig, 'ont_no', { :class => 'span10', :size => '16', :id => 's_no' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="span6">
+            <div class="control-group">
+              <label class="control-label" for="s_no"> 生成命令条数</label>
+
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"> N </span>
+                  <%= text_field :preconfig, 'cmd_no', { :class => 'span10', :size => '16', :id => 's_no' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span12 offset4">
+          <button type="submit" class="btn btn-large btn-success span4">生成命令</button>
+        </div>
+      </div>
+      </div>
+  <% end -%>
+  <!--</form>-->
+  </div>

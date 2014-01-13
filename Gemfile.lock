@@ -116,6 +116,7 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-will_paginate
   coffee-rails (~> 4.0.0)
+  execjs
   jbuilder (~> 1.2)
   jquery-rails
   rails (= 4.0.2)

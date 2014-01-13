@@ -1,6 +1,9 @@
 Gpon::Application.routes.draw do
+  get "index_template/index"
+  get "zte_model/index"
   get "welcome/index"
   post 'welcome/g_command'
+  post 'zte_model/g_command'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

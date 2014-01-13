@@ -1,0 +1,26 @@
+<div class="well">
+  密码是：<br>
+  <% @passwd.each do |pw| %>
+      <%= pw %>
+      <br>
+  <% end %>
+  <br>
+  ONT批量添加命令:<br>
+  <% @ont_str.each do |os| %>
+      <%= raw(os) %>
+      <br><br>
+  <% end %>
+  <br>
+  业务流批量添加命令:<br>
+  <% @onu_str.each do |ss| %>
+      <%= ss %>
+      <br><br>
+  <% end %>
+  <br>
+  业务流批量添加命令:<br>
+  <% @pon_str.each do |ss| %>
+      <%= ss %>
+      <br><br>
+  <% end %>
+  <br>
+</div>

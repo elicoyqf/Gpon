@@ -75,7 +75,7 @@ class WelcomeController < ApplicationController
       else
         tmp = t
       end
-      sp_str << "service-port vlan #{pvlan} port #{portinfo} ont #{tmp} eth 1 multi-service user-vlan untagged tag-transform add-double inner-vlan #{cvlan+index-1} inner-priority 0"
+      sp_str << "service-port vlan #{pvlan} port #{portinfo} ont #{tmp} eth 1 multi-service user-vlan untagged tag-transform add-double inner-vlan #{cvlan+index} inner-priority 0"
     end
     sp_str
   end

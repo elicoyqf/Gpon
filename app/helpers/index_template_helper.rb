@@ -1,0 +1,2 @@
+module IndexTemplateHelper
+end
