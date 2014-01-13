@@ -5,9 +5,9 @@ class ZteModelController < ApplicationController
 
   def g_command
     #gd1
-    olt_id = params[:preconfig][:olt_id].to_s.strip
+    olt_id  = params[:preconfig][:olt_id].to_s.strip
     #0011
-    port = params[:preconfig][:port].to_s.strip
+    port    = params[:preconfig][:port].to_s.strip
     #3
     #line_id = params[:preconfig][:line_id].to_s.strip
     #3
@@ -17,9 +17,9 @@ class ZteModelController < ApplicationController
     #1386
     ce_vlan = params[:preconfig][:ce_vlan].to_s.strip
     #command no:32
-    cmd_no = params[:preconfig][:cmd_no].to_s.strip
+    cmd_no  = params[:preconfig][:cmd_no].to_s.strip
     #ont id
-    ont_no = params[:preconfig][:ont_no].to_s.strip
+    ont_no  = params[:preconfig][:ont_no].to_s.strip
 
     if olt_id.size != 8 || port.size != 3
       render template: 'welcome/error'
@@ -34,7 +34,7 @@ class ZteModelController < ApplicationController
   #service_port_make(1318, '0/6/6', 1161,32)
 
   def newpass(len, prefix='')
-    chars = ("a".."z").to_a + ("0".."9").to_a
+    chars   = ("a".."z").to_a + ("0".."9").to_a
     newpass = prefix.dup
     1.upto(len) { newpass << chars[rand(chars.size-1)] }
     newpass
@@ -42,12 +42,17 @@ class ZteModelController < ApplicationController
 
   def ont_make(port, pass_prefix, ont_no, count, pvlan, cvlan)
     pass_set = Set[]
-    ont_str = []
-    onu_str = []
-    pon_str = []
-    while pass_set.size != count do
-      (1..count).each { pass_set << newpass(2, pass_prefix) }
+    ont_str  = []
+    onu_str  = []
+    pon_str  = []
+
+    (1..count).each do |tmp|
+      pass_set << newpass(2, pass_prefix)
+      until pass_set.size == tmp
+        pass_set << newpass(2, pass_prefix)
+      end
     end
+
     #if pass_set.size == count
     #  pass_set.each { |s| puts s }
     #end
@@ -58,6 +63,7 @@ class ZteModelController < ApplicationController
     if pass_set.size == count
       pass_set.each_with_index do |set, index|
         t = index + ont_no
+        uvlan = cvlan.to_i + index
         if t < 100
           tmp = t.to_s.ljust(3)
         else
@@ -69,11 +75,11 @@ class ZteModelController < ApplicationController
         onu_str << 'gemport 1 unicast tcont 2 dir both queue 1'
         onu_str << 'encrypt 1 enable'
         onu_str << 'switchport mode hybrid vport 1'
-        onu_str << "service-port 1 vport 1 user-vlan #{cvlan} vlan #{cvlan} svlan #{pvlan}"
+        onu_str << "service-port 1 vport 1 user-vlan #{uvlan} vlan #{uvlan} svlan #{pvlan}"
 
         pon_str << inter_str + ":#{t}"
-        pon_str << "service ServiceName type internet gemport 1 cos 0 vlan #{pvlan}"
-        pon_str << "vlan port eth_0/1 mode tag vlan #{pvlan}"
+        pon_str << "service ServiceName type internet gemport 1 cos 0 vlan #{uvlan}"
+        pon_str << "vlan port eth_0/1 mode tag vlan #{uvlan}"
 
       end
     else
