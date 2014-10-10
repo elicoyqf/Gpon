@@ -59,7 +59,7 @@ class ZteModelController < ApplicationController
     port_str  = port[0] + '/' + port[1] + '/' + port[2]
     inter_str = 'interface gpon-onu_' + port_str
     pononu_str = 'pon-onu-mng gpon-onu_' + port_str
-    ont_str << inter_str
+    ont_str << 'interface gpon-olt_' + port_str
 
     if pass_set.size == count
       pass_set.each_with_index do |set, index|
