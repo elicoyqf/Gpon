@@ -85,6 +85,7 @@ class ZteModelController < ApplicationController
         pon_str << "exit"
 
       end
+      ont_str << "exit"
     else
       ont_str << "<span style='color:red'>命令生成错误，请重新生成.</span>"
     end
