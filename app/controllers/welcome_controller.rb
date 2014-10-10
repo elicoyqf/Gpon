@@ -23,7 +23,7 @@ class WelcomeController < ApplicationController
     if olt_id.size != 8 || port.size != 4
       render template: 'welcome/error'
     else
-      @passwd, @ont_str = ont_make(port[3], olt_id, line_id, srv_id, ont_no.to_i, cmd_no.to_i)
+      @passwd, @ont_str = ont_make(port, olt_id, line_id, srv_id, ont_no.to_i, cmd_no.to_i)
       @sp_str           = service_port_make(pe_vlan, port[0]+'/'+port[1..2]+'/'+port[3], ce_vlan.to_i, ont_no.to_i, cmd_no.to_i)
     end
   end
@@ -43,6 +43,12 @@ class WelcomeController < ApplicationController
     pass_set = Set[]
     ont_str  = []
 
+    if port[1].to_i == 0
+      ont_str << "interface gpon " + port[0] + '/' + port[2] + '/' + port[3]
+    else
+      ont_str << "interface gpon " + port[0] + '/' + port[1] + port[2] + '/' + port[3]
+    end
+
     #(1..count).each { pass_set << newpass(2, pass_prefix) }
 
     (1..count).each do |tmp|
@@ -61,8 +67,9 @@ class WelcomeController < ApplicationController
         else
           tmp = t
         end
-        ont_str << "ont add #{port} #{tmp} password-auth #{set} always-on omci ont-lineprofile-id #{lineid} ont-srvprofile-id #{srvid}"
+        ont_str << "ont add #{port[3]} #{tmp} password-auth #{set} always-on omci ont-lineprofile-id #{lineid} ont-srvprofile-id #{srvid}"
       end
+      ont_str << "quit"
     else
       ont_str << "<span style='color:red'>命令生成错误，请重新生成.</span>"
     end
