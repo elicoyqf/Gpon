@@ -56,13 +56,14 @@ class ZteModelController < ApplicationController
     #if pass_set.size == count
     #  pass_set.each { |s| puts s }
     #end
-
-    inter_str = 'interface gpon-olt_' + port[0] + '/' + port[1] + '/' + port[2]
+    port_str  = port[0] + '/' + port[1] + '/' + port[2]
+    inter_str = 'interface gpon-onu_' + port_str
+    pononu_str = 'pon-onu-mng gpon-onu_' + port_str
     ont_str << inter_str
 
     if pass_set.size == count
       pass_set.each_with_index do |set, index|
-        t = index + ont_no
+        t     = index + ont_no
         uvlan = cvlan.to_i + index
         if t < 100
           tmp = t.to_s.ljust(3)
@@ -76,10 +77,12 @@ class ZteModelController < ApplicationController
         onu_str << 'encrypt 1 enable'
         onu_str << 'switchport mode hybrid vport 1'
         onu_str << "service-port 1 vport 1 user-vlan #{uvlan} vlan #{uvlan} svlan #{pvlan}"
+        onu_str << "exit"
 
-        pon_str << inter_str + ":#{t}"
+        pon_str << pononu_str + ":#{t}"
         pon_str << "service ServiceName type internet gemport 1 cos 0 vlan #{uvlan}"
         pon_str << "vlan port eth_0/1 mode tag vlan #{uvlan}"
+        pon_str << "exit"
 
       end
     else
