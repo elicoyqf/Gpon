@@ -44,9 +44,9 @@ class WelcomeController < ApplicationController
     ont_str  = []
 
     if port[1].to_i == 0
-      ont_str << "interface gpon " + port[0] + '/' + port[2] + '/' + port[3]
+      ont_str << "interface gpon " + port[0] + '/' + port[2]
     else
-      ont_str << "interface gpon " + port[0] + '/' + port[1] + port[2] + '/' + port[3]
+      ont_str << "interface gpon " + port[0] + '/' + port[1] + port[2]
     end
 
     #(1..count).each { pass_set << newpass(2, pass_prefix) }

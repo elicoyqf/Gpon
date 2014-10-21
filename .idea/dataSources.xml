@@ -4,13 +4,8 @@
     <data-source source="LOCAL" name="Rails Gpon: development" uuid="cf9c0441-f2bf-4638-bffc-0eb970e9579a">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:G:\Project\Rails Proj\Gpon\db\development.sqlite3</jdbc-url>
-      <libraries>
-        <library>
-          <url>file://$USER_HOME$/.RubyMine40/config/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>
-        </library>
-      </libraries>
+      <jdbc-url>jdbc:sqlite:E:\Project\Gpon\db\development.sqlite3</jdbc-url>
+      <libraries />
     </data-source>
   </component>
 </project>
-
